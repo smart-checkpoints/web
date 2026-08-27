@@ -1,0 +1,5 @@
+# Normalise to LF in the repository so the Linux build matches local Windows.
+* text=auto
+
+*.png binary
+*.ico binary
