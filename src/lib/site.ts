@@ -1,15 +1,41 @@
 const org = "https://github.com/smart-checkpoints";
 
+/** Absolute origin, needed so social crawlers resolve the card image. */
+const url = process.env.NEXT_PUBLIC_SITE_URL ?? "https://smartcheckpoints.xyz";
+
 export const site = {
   name: "Smart Checkpoints",
   tagline:
     "Average speed enforcement that measures the road, not the moment.",
+
+  /* Three lengths of the same sentence, because three surfaces truncate it at
+     three different points.
+
+     title       the browser tab and the search result heading, under 60 chars
+     description the search snippet, under 160 chars
+     summary     the link preview in Slack, X and Discord, under 200 chars */
+  title: "Smart Checkpoints · Average speed enforcement over distance",
   description:
-    "An average speed over distance traffic enforcement system. It models a city as a graph of camera checkpoints and resolves the real driving distance between them through pluggable distance drivers.",
+    "Open-source average speed enforcement: a city modelled as a graph of camera checkpoints, with speed measured over real driving distance.",
+  summary:
+    "A spot camera measures one instant. Smart Checkpoints models a city as a graph of camera checkpoints and enforces average speed across the real driving distance between them.",
+
+  url,
+  domain: new URL(url).host,
   docs: "https://docs.smartcheckpoints.xyz",
   github: org,
   license: "MIT",
   copyrightHolder: "Smart Checkpoints",
+  keywords: [
+    "average speed enforcement",
+    "average speed cameras",
+    "section control",
+    "speed over distance",
+    "traffic enforcement",
+    "checkpoint graph",
+    "OSRM",
+    "open source",
+  ],
 } as const;
 
 export type NavLink = {

@@ -25,8 +25,34 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: `${site.name} · ${site.tagline}`,
+  // Every relative URL below, and the generated social card, resolves against
+  // this. Without it crawlers get a relative og:image and drop the preview.
+  metadataBase: new URL(site.url),
+  title: site.title,
   description: site.description,
+  applicationName: site.name,
+  keywords: [...site.keywords],
+  authors: [{ name: site.copyrightHolder, url: site.github }],
+  creator: site.copyrightHolder,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: site.name,
+    url: "/",
+    title: `${site.name} — Enforce the road, not the moment.`,
+    description: site.summary,
+    locale: "en_GB",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — Enforce the road, not the moment.`,
+    description: site.summary,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
