@@ -205,13 +205,13 @@ html::-webkit-scrollbar-track {
     transform: translateX(0);
   }
 
-  /* One clean pill silhouette. A hairline highlight catches the top curve,
-     barely lighter than the face: it should read as an edge, not a band.
-     Nothing sticks out past the shape, and nothing moves on hover. */
+  /* One clean pill silhouette: a flat field of the accent, and nothing else.
+     No inner highlight along the top curve: at this radius it read as a band
+     across the button rather than as an edge on it. Nothing sticks out past
+     the shape, and nothing moves on hover. */
   .btn-primary {
     color: var(--surface);
     background-color: var(--cyan);
-    box-shadow: inset 0 1px 0 color-mix(in oklab, var(--cyan) 80%, var(--surface));
   }
 
   .btn-secondary {
