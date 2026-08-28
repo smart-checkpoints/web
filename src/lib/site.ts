@@ -113,10 +113,18 @@ export const footerColumns: FooterColumn[] = [
   {
     title: "Documentation",
     links: [
-      { label: "Overview", href: site.docs, external: true },
-      { label: "Distance drivers", href: site.docs, external: true },
-      { label: "Data model", href: site.docs, external: true },
-      { label: "Deployment", href: site.docs, external: true },
+      { label: "Introduction", href: site.docs, external: true },
+      { label: "Quickstart", href: `${site.docs}/quickstart`, external: true },
+      {
+        label: "Distance drivers",
+        href: `${site.docs}/concepts/distance-drivers`,
+        external: true,
+      },
+      {
+        label: "REST API",
+        href: `${site.docs}/reference/rest-api`,
+        external: true,
+      },
     ],
   },
   {

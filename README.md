@@ -1,4 +1,4 @@
-# web
+# Smart Checkpoints Website
 
 The Smart Checkpoints landing page. One page: the problem, how the system
 works, the architecture, the repositories, and a downloads placeholder.
