@@ -95,6 +95,52 @@ export const repos: Repo[] = [
   },
 ];
 
+export type Resource = {
+  title: string;
+  body: string;
+  href: string;
+};
+
+/**
+ * The documentation, broken out by the question a reader arrives with.
+ *
+ * Every one of these is a page on docs.smartcheckpoints.xyz. The site explains
+ * what the system is; the moment a reader wants to know how it actually works,
+ * they should be one click from the page that says so.
+ */
+export const resources: Resource[] = [
+  {
+    title: "Documentation",
+    body: "The whole system written down: concepts, interfaces, and how the pieces fit together.",
+    href: site.docs,
+  },
+  {
+    title: "Quickstart",
+    body: "Run the server, build a two checkpoint graph, and produce your first violation.",
+    href: `${site.docs}/quickstart`,
+  },
+  {
+    title: "The graph model",
+    body: "Projects, checkpoints, edges, and the arithmetic that decides a violation.",
+    href: `${site.docs}/concepts/graph-model`,
+  },
+  {
+    title: "Distance drivers",
+    body: "How the server asks for a road distance, and what happens when nothing answers.",
+    href: `${site.docs}/concepts/distance-drivers`,
+  },
+  {
+    title: "REST API",
+    body: "Every HTTP endpoint the server exposes, with its authentication and its shape.",
+    href: `${site.docs}/reference/rest-api`,
+  },
+  {
+    title: "The console",
+    body: "The operator surface the server ships with: the project list, the live graph, and administration.",
+    href: `${site.docs}/reference/console`,
+  },
+];
+
 export type FooterColumn = {
   title: string;
   links: NavLink[];

@@ -4,6 +4,8 @@ import {
   SpeedDiagram,
   VerdictDiagram,
 } from "@/components/diagrams/StepDiagrams";
+import { Fragment } from "react";
+import Connector from "@/components/ui/Connector";
 import FeatureRow from "@/components/ui/FeatureRow";
 import Section from "@/components/ui/Section";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -40,17 +42,25 @@ export default function HowItWorks() {
         lead="Nothing in the chain is clever. Each step does one thing, and the number that matters, the road distance, is the one the system refuses to guess."
       />
 
-      <div className="mt-16 space-y-28 sm:mt-20 lg:space-y-40">
+      {/* The steps are a sequence, so the gap between them is drawn rather than
+          left empty: the line leaves one step's diagram and arrives at the
+          next one's. `flipped` puts the diagram on the left, so an unflipped
+          step hands off from the right. */}
+      <div className="mt-16 sm:mt-20">
         {steps.map((step, index) => {
           const { Diagram } = step;
           return (
-            <FeatureRow
-              key={step.title}
-              title={step.title}
-              body={step.body}
-              flipped={index % 2 === 1}
-              visual={<Diagram />}
-            />
+            <Fragment key={step.title}>
+              {index > 0 ? (
+                <Connector direction={index % 2 === 1 ? "rtl" : "ltr"} />
+              ) : null}
+              <FeatureRow
+                title={step.title}
+                body={step.body}
+                flipped={index % 2 === 1}
+                visual={<Diagram />}
+              />
+            </Fragment>
           );
         })}
       </div>
