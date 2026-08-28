@@ -39,13 +39,13 @@ export const metadata: Metadata = {
     type: "website",
     siteName: site.name,
     url: "/",
-    title: `${site.name} — Enforce the road, not the moment.`,
+    title: `${site.name} · Enforce the road, not the moment.`,
     description: site.summary,
     locale: "en_GB",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Enforce the road, not the moment.`,
+    title: `${site.name} · Enforce the road, not the moment.`,
     description: site.summary,
   },
   robots: {

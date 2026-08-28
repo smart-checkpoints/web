@@ -35,7 +35,9 @@ Requires Node 20 or newer.
 src/app/layout.tsx          fonts, metadata, the html shell
 src/app/page.tsx            the page, assembled from the sections
 src/app/globals.css         tokens, type scale, button styles, scrollbar
-src/app/favicon.ico         the real favicon
+src/app/icon.svg            the mark, square, as the tab icon
+src/app/favicon.ico         16/32/48, generated from icon.svg
+src/app/apple-icon.png      180x180, generated from icon.svg
 
 src/components/ui/          the component system
   Button.tsx                primary | secondary | ghost, sm | md | lg
@@ -58,7 +60,7 @@ src/components/diagrams/    every animated SVG
 
 src/components/sections/    Hero, Problem, HowItWorks, Architecture,
                             OpenSource, Downloads
-src/components/LogoMark.tsx the logo lockup and the vector mark
+src/components/LogoMark.tsx the lockup and the mark, both drawn in code
 src/lib/site.ts             name, links, repositories, footer columns
 src/lib/motion.ts           the shared easing and reveal variants
 src/lib/cn.ts               class name joiner
@@ -112,9 +114,32 @@ informative frame, and `globals.css` disables transitions under
 
 ## Assets
 
-`public/logo.png` and `src/app/favicon.ico` are the real brand assets.
-`LogoMark.tsx` also exports a vector redraw of the mark in cyan, used as a
-motif in section headings and diagrams.
+Everything brand is vector, and all of it comes from one description of the
+geometry in `LogoMark.tsx`. There is no raster original left in the repository.
+
+The mark is three shapes rotated 120 degrees from each other. Each one is a
+ring, the link leaving it, and the dot of the node that link lands on, which is
+why the three colours chase each other round the figure: `#19c4d8`, `#1d9ea5`,
+`#1d7873`. Where a link passes through another shape's ring, the ring is cut
+with the same clearance from the inner edge to the outer one, so the gap reads
+as a parallel channel rather than a wedge. The gaps are transparent, not white,
+so the mark sits correctly on any background.
+
+The wordmark is `SMART CHECKPOINTS` set in Space Grotesk Bold, the same display
+face as the headings, flattened to outlines. It never waits on a webfont and
+never reflows the header.
+
+| File | What it is |
+| --- | --- |
+| `src/components/LogoMark.tsx` | the source: `LogoLockup` and `GraphMark` |
+| `public/logo.svg` | the lockup, for anything outside the app |
+| `public/logo-mark.svg` | the mark on its own |
+| `src/app/icon.svg` | the tab icon |
+| `src/app/favicon.ico`, `src/app/apple-icon.png` | raster copies of `icon.svg` |
+
+`GraphMark` defaults to `tone="current"` and follows the surrounding text
+colour, which is how it is used as a motif in section headings and lists. Pass
+`tone="brand"` for the three-colour mark.
 
 ## Links
 

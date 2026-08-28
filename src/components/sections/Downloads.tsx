@@ -37,7 +37,7 @@ export default function Downloads() {
                 className="flex flex-wrap items-center justify-between gap-4 px-7 py-6 sm:px-9"
               >
                 <div className="flex items-center gap-4">
-                  <GraphMark className="h-5 w-5 shrink-0 text-border-strong" />
+                  <GraphMark className="h-5 w-auto shrink-0 text-border-strong" />
                   <div>
                     <p className="font-mono text-sm font-semibold text-text">
                       {item.name}

@@ -25,7 +25,7 @@ export default function SectionHeading({
   return (
     <Reveal className={cn(centered && "flex flex-col items-center", className)}>
       <div className="flex items-center gap-2.5">
-        <GraphMark className="h-4 w-4 shrink-0 text-cyan" />
+        <GraphMark className="h-4 w-auto shrink-0 text-cyan" />
         <span className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-cyan-dark">
           {eyebrow}
         </span>

@@ -62,20 +62,12 @@ const BACKGROUND = svg(`
   <rect width="1200" height="7" fill="url(#rule)"/>
 </svg>`);
 
-/** The mark from LogoMark.tsx: one node left, two right, all three connected. */
+/** The mark from LogoMark.tsx, drawn flat in cyan for the card. */
 const MARK = svg(`
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-  <g stroke="${CYAN}" stroke-width="1.6" stroke-linecap="round">
-    <line x1="12.6" y1="13.6" x2="18.4" y2="10.4"/>
-    <line x1="12.6" y1="18.4" x2="18.4" y2="21.6"/>
-    <line x1="23" y1="13.2" x2="23" y2="18.8"/>
-  </g>
-  <g stroke="${CYAN}" stroke-width="2" fill="none">
-    <circle cx="8" cy="16" r="4"/><circle cx="23" cy="8" r="4"/><circle cx="23" cy="24" r="4"/>
-  </g>
-  <g fill="${CYAN}">
-    <circle cx="8" cy="16" r="1.7"/><circle cx="23" cy="8" r="1.7"/><circle cx="23" cy="24" r="1.7"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="32.5" viewBox="0 0 96 104" fill="${CYAN}">
+  <g fill="${CYAN}"><path d="M43.78 44.68A22.5 22.5 0 1 1 39.48 37.23L35.04 39.79A17.5 17.5 0 1 0 39.34 47.24Z"/><path d="M37.66 60.75L73.5 81.44" fill="none" stroke="${CYAN}" stroke-width="5"/><circle cx="73.5" cy="81.44" r="11.3"/></g>
+  <g fill="${CYAN}"><path d="M56.52 66.68A22.5 22.5 0 1 1 52.22 74.13L56.66 76.69A17.5 17.5 0 1 0 60.96 69.24Z"/><path d="M73.5 63.94L73.5 22.56" fill="none" stroke="${CYAN}" stroke-width="5"/><circle cx="73.5" cy="22.56" r="11.3"/></g>
+  <g fill="${CYAN}"><path d="M69.2 44.64A22.5 22.5 0 1 1 77.8 44.64L77.8 39.52A17.5 17.5 0 1 0 69.2 39.52Z"/><path d="M58.34 31.31L22.5 52" fill="none" stroke="${CYAN}" stroke-width="5"/><circle cx="22.5" cy="52" r="11.3"/></g>
 </svg>`);
 
 /* The city graph, redrawn compactly for the card: nine checkpoints, twelve
@@ -247,7 +239,7 @@ export function renderOgImage() {
         >
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={MARK} width={38} height={38} alt="" />
+            <img src={MARK} width={35} height={38} alt="" />
             <div
               style={{
                 fontFamily: "Space Grotesk",
