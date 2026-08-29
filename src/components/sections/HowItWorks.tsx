@@ -28,7 +28,7 @@ const steps = [
   },
   {
     title: "The run is recorded",
-    body: "Every traversal is stored against its edge with the distance, the elapsed time and the average. Violations are simply the runs that crossed the edge faster than the limit permits.",
+    body: "Every traversal is stored against its edge with its elapsed time, which also feeds the live congestion figure. Violations are simply the runs that crossed the edge faster than the limit permits.",
     Diagram: VerdictDiagram,
   },
 ];

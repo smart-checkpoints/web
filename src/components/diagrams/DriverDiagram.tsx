@@ -192,7 +192,7 @@ export default function DriverDiagram() {
         textAnchor="middle"
         className="font-mono"
       >
-        node indices in, metres out
+        coordinates in, metres out
       </text>
     </svg>
   );

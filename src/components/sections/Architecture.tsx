@@ -10,13 +10,14 @@ import SectionHeading from "@/components/ui/SectionHeading";
 const exchange = `server -> driver
 { "type": "calculate-distance",
   "requestId": "6f659d37",
-  "fromIdInProject": 0,
-  "toIdInProject": 1 }
+  "from": { "latitude": 30.044, "longitude": 31.236 },
+  "to":   { "latitude": 30.046, "longitude": 31.224 } }
 
 driver -> server
 { "type": "distance-result",
   "requestId": "6f659d37",
-  "distance": 1767.5 }`;
+  "distance": 1767.5,
+  "path": { "type": "LineString", "coordinates": [...] } }`;
 
 const graphFacts = [
   {
@@ -32,7 +33,7 @@ const graphFacts = [
   {
     term: "Project",
     definition:
-      "One deployment: a set of checkpoints and the edges between them, behind its own API key.",
+      "One deployment: a set of checkpoints and the edges between them, behind its own operator key.",
   },
 ];
 
@@ -93,14 +94,15 @@ export default function Architecture() {
               <p>
                 Road distance depends on a map, and a map is a dependency worth
                 keeping outside the server. So a driver is a separate process:
-                it opens a WebSocket, authenticates with a project API key, and
-                waits. The server sends two node indices and a request id; the
-                driver answers with a number of metres against the same id.
+                it opens a WebSocket, authenticates with a project operator key,
+                and waits. The server sends the two checkpoint coordinates and a
+                request id; the driver answers with a number of metres against
+                the same id, and optionally the shape of the road it found.
               </p>
               <p className="mt-4">
-                That is the whole contract: node indices in, metres out. It
-                says nothing about how the distance is obtained, which is
-                exactly what makes drivers interchangeable.
+                That is the whole contract: coordinates in, metres out, geometry
+                optional. It says nothing about how the distance is obtained,
+                which is exactly what makes drivers interchangeable.
               </p>
             </>
           }
@@ -116,7 +118,7 @@ export default function Architecture() {
             <p className="mt-4 text-base text-text-dim">
               An OSRM server, a commercial routing API, a table of surveyed
               distances, or figures measured by hand for a network no public
-              map covers well. All of them answer the same two messages.
+              map covers well. All of them answer the same exchange.
             </p>
             <div className="mt-7 overflow-x-auto rounded-xl border border-border bg-surface-hover p-5">
               <pre className="font-mono text-xs leading-relaxed text-text-dim">
@@ -132,18 +134,19 @@ export default function Architecture() {
               What happens when it fails
             </h4>
             <p className="mt-4 text-base text-text-dim">
-              A driver that cannot answer sends nothing at all. The server times
-              the request out rather than accepting a straight-line guess, and
-              the edge is left unmeasured.
+              A driver that cannot route an edge says so, with a reason: no road
+              here, or the map service is down. Genuine silence hits a timeout.
+              Either way the server never fills the gap with a straight-line
+              guess, and the edge is left unresolved.
             </p>
             <p className="mt-4 text-base text-text-dim">
-              That is deliberate. An unmeasured edge is a visible gap. A
-              plausible wrong distance is an invisible one, and it produces
-              violations that look exactly like real ones.
+              That is deliberate. An unresolved edge is a visible gap that
+              enforces nothing. A plausible wrong distance is an invisible one,
+              and it produces violations that look exactly like real ones.
             </p>
             <div className="mt-7">
               <Badge tone="yellow" mono className="normal-case tracking-normal">
-                edge 4 &#8594; 7 &#183; unmeasured, no driver answered
+                edge 4 &#8594; 7 &#183; unresolved &#183; driver said no-route
               </Badge>
             </div>
           </Card>
