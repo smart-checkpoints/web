@@ -141,6 +141,73 @@ export const resources: Resource[] = [
   },
 ];
 
+/* ---------------------------------------------------------------------------
+   The e-AGE26 Phase 2 submission, served at /phase-2.
+   --------------------------------------------------------------------------- */
+
+export const submission = {
+  /** The submission video. Any YouTube address works: watch, youtu.be,
+   *  embed, shorts or live. Empty, the page shows a pending frame instead of
+   *  a player and leaves the text link out. */
+  video: "",
+  /** The source for the road safety figures in "The problem". */
+  roadSafetyReport:
+    "https://www.who.int/publications/i/item/9789240086517",
+  driverProtocol: `${site.docs}/reference/driver-protocol`,
+  dataQuality: `${site.docs}/concepts/data-quality`,
+  quickstart: `${site.docs}/quickstart`,
+} as const;
+
+export type SubmissionRepo = {
+  name: string;
+  /** One line, taken from the repository's own package or README. */
+  description: string;
+  stack: string;
+  url: string;
+};
+
+/**
+ * All five repositories. The landing page shows four of them; the submission
+ * is where the Mapbox map driver and the full set are listed.
+ */
+export const submissionRepos: SubmissionRepo[] = [
+  {
+    name: "server",
+    description:
+      "The checkpoint graph, the enforcement path, and the operator console that drives them.",
+    stack: "Node · Express · SQLite",
+    url: `${org}/server`,
+  },
+  {
+    name: "driver-osrm",
+    description:
+      "A distance driver that resolves edge distances with OSRM road routing.",
+    stack: "Node · OSRM",
+    url: `${org}/driver-osrm`,
+  },
+  {
+    name: "driver-mapbox",
+    description:
+      "A map driver that renders a project on a Mapbox basemap and serves it to the operator console.",
+    stack: "Node · Mapbox GL JS",
+    url: `${org}/driver-mapbox`,
+  },
+  {
+    name: "simulation",
+    description:
+      "The Unity environment Phase 1 measured every distance in, by driving a virtual vehicle along the route.",
+    stack: "Unity",
+    url: `${org}/simulation`,
+  },
+  {
+    name: "docs",
+    description:
+      "Source for docs.smartcheckpoints.xyz: the concepts, the REST API, the driver protocol, and the map bridge.",
+    stack: "Mintlify · MDX",
+    url: `${org}/docs`,
+  },
+];
+
 export type FooterColumn = {
   title: string;
   links: NavLink[];

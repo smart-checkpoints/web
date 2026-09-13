@@ -4,7 +4,13 @@ import { footerColumns, site } from "@/lib/site";
 
 const year = 2026;
 
-export default function Footer() {
+type FooterProps = {
+  /** Prefixed to the in-page anchors, which are the landing page's sections.
+   *  Any other page passes "/" so they lead back there. */
+  anchorBase?: string;
+};
+
+export default function Footer({ anchorBase = "" }: FooterProps) {
   return (
     <footer className="border-t border-border bg-surface">
       <Container className="py-20 lg:py-24">
@@ -27,7 +33,11 @@ export default function Footer() {
                   {column.links.map((link) => (
                     <li key={`${column.title}-${link.label}`}>
                       <a
-                        href={link.href}
+                        href={
+                          link.href.startsWith("#")
+                            ? `${anchorBase}${link.href}`
+                            : link.href
+                        }
                         className="text-sm text-text-dim transition-colors duration-200 hover:text-cyan-dark"
                       >
                         {link.label}

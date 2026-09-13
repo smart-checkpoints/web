@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { LogoLockup } from "@/components/LogoMark";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import { cn } from "@/lib/cn";
 import { ease } from "@/lib/motion";
-import { navLinks, site } from "@/lib/site";
+import { navLinks, site, type NavLink } from "@/lib/site";
 
 const anchorIds = navLinks
   .filter((link) => link.href.startsWith("#"))
@@ -18,6 +19,12 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string | null>(null);
   const reduceMotion = useReducedMotion();
+
+  // The in-page anchors are the landing page's sections. Anywhere else they
+  // lead back to it, and the logo goes home rather than to the top.
+  const onHome = usePathname() === "/";
+  const hrefFor = (link: NavLink) =>
+    onHome || link.external ? link.href : `/${link.href}`;
 
   // Lift the bar off the page once it is no longer at the top.
   useEffect(() => {
@@ -76,7 +83,10 @@ export default function Nav() {
       )}
     >
       <Container className="flex h-16 items-center justify-between gap-6">
-        <a href="#top" aria-label={`${site.name}, back to top`}>
+        <a
+          href={onHome ? "#top" : "/"}
+          aria-label={onHome ? `${site.name}, back to top` : `${site.name}, home`}
+        >
           <LogoLockup className="h-9 w-auto" />
         </a>
 
@@ -86,7 +96,7 @@ export default function Nav() {
             return (
               <a
                 key={link.label}
-                href={link.href}
+                href={hrefFor(link)}
                 className={cn(
                   "rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200",
                   "hover:bg-surface-hover hover:text-cyan-dark",
@@ -145,7 +155,7 @@ export default function Nav() {
               {navLinks.map((link) => (
                 <a
                   key={link.label}
-                  href={link.href}
+                  href={hrefFor(link)}
                   onClick={() => setOpen(false)}
                   className="rounded-xl px-4 py-3 text-base font-medium text-text transition-colors duration-200 hover:bg-surface-hover hover:text-cyan-dark"
                 >
