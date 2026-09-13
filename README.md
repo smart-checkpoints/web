@@ -1,7 +1,8 @@
 # Smart Checkpoints Website
 
-The Smart Checkpoints landing page. One page: the problem, how the system
-works, the architecture, the repositories, and a downloads placeholder.
+The Smart Checkpoints landing page: the problem, how the system works, the
+architecture, the repositories, and a downloads placeholder. Beside it,
+`/phase-2`, the e-AGE26 Phase 2 submission.
 
 The documentation itself is not here. It is a Mintlify site at
 [docs.smartcheckpoints.xyz](https://docs.smartcheckpoints.xyz), built from the
@@ -34,6 +35,7 @@ Requires Node 20 or newer.
 ```
 src/app/layout.tsx          fonts, metadata, the html shell
 src/app/page.tsx            the page, assembled from the sections
+src/app/phase-2/page.tsx    the Phase 2 submission, from sections/phase-2
 src/app/globals.css         tokens, type scale, button styles, scrollbar
 src/app/icon.svg            the mark, square, as the tab icon
 src/app/favicon.ico         16/32/48, generated from icon.svg
@@ -57,11 +59,20 @@ src/components/diagrams/    every animated SVG
   StepDiagrams.tsx          the four pipeline stages
   GraphModelDiagram.tsx     nodes, edges, one resolved route
   DriverDiagram.tsx         drivers plugging into the core
+  CityRoutesDiagram.tsx     any pair of checkpoints, any route      (phase 2)
+  DisplacementDiagram.tsx   straight line against road distance     (phase 2)
+  DriverSwapDiagram.tsx     the simulation driver, then driver-osrm (phase 2)
+  QualityDiagram.tsx        small offset, large error, the flag     (phase 2)
+  ProtocolDiagram.tsx       the four driver messages                (phase 2)
+  CoverageComparison.tsx    enforcement per added camera, 3 ways    (phase 2)
 
 src/components/sections/    Hero, Problem, HowItWorks, Architecture,
                             OpenSource, Downloads
+  phase-2/                  the submission's sections, top to bottom
 src/components/LogoMark.tsx the lockup and the mark, both drawn in code
-src/lib/site.ts             name, links, repositories, footer columns
+src/lib/site.ts             name, links, repositories, footer columns,
+                            and the submission's video and repositories
+src/lib/youtube.ts          the video id out of any YouTube address
 src/lib/motion.ts           the shared easing and reveal variants
 src/lib/cn.ts               class name joiner
 ```

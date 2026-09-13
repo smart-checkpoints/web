@@ -28,13 +28,18 @@ const STREETS = [
   "M60 118 L132 118",
   "M40 44 L360 44",
   "M340 30 L340 214",
-  "M276 44 L276 150",
-  "M276 150 L360 150",
+  "M300 44 L300 150",
+  "M300 150 L360 150",
 ];
 
 const ANGLE =
   (Math.atan2(TO.y - FROM.y, TO.x - FROM.x) * 180) / Math.PI;
-const MID = { x: (FROM.x + TO.x) / 2, y: (FROM.y + TO.y) / 2 };
+/** Where the straight line's label sits: in the one gap between streets wide enough for it. */
+const LABEL_AT = 0.54;
+const MID = {
+  x: FROM.x + (TO.x - FROM.x) * LABEL_AT,
+  y: FROM.y + (TO.y - FROM.y) * LABEL_AT,
+};
 
 type Row = {
   y: number;

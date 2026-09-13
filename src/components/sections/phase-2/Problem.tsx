@@ -31,8 +31,8 @@ export default function Problem() {
     <Section id="problem" tone="subtle">
       <SectionHeading
         eyebrow="The problem"
-        title="1.19 million people die on the roads every year"
-        lead="Road crashes are the leading killer of children and young people aged 5 to 29. Speeding is one of the largest contributing factors."
+        title="4 million people die on the roads every year"
+        lead="Most of them are under 25. Speeding is one of the largest contributing factors."
       />
 
       <Reveal>

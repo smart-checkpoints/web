@@ -101,13 +101,19 @@ export default function DriverSwapDiagram() {
               strokeWidth="2"
               strokeDasharray="6 6"
               strokeLinecap="round"
+              // The idle link settles back to rest rather than dropping its
+              // animated value mid-flight.
               animate={
-                reduceMotion || !isActive ? undefined : { strokeDashoffset: [0, -24] }
+                reduceMotion
+                  ? undefined
+                  : { strokeDashoffset: isActive ? [0, -24] : 0 }
               }
               transition={
-                reduceMotion || !isActive
+                reduceMotion
                   ? undefined
-                  : { duration: 1.2, repeat: Infinity, ease: "linear" }
+                  : isActive
+                    ? { duration: 1.2, repeat: Infinity, ease: "linear" }
+                    : { duration: 0.3 }
               }
             />
             <circle

@@ -149,7 +149,7 @@ export const submission = {
   /** The submission video. Any YouTube address works: watch, youtu.be,
    *  embed, shorts or live. Empty, the page shows a pending frame instead of
    *  a player and leaves the text link out. */
-  video: "",
+  video: "https://youtu.be/X2LjMDYReBY",
   /** The source for the road safety figures in "The problem". */
   roadSafetyReport:
     "https://www.who.int/publications/i/item/9789240086517",

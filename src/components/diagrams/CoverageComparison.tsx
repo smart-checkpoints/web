@@ -43,8 +43,9 @@ const H = 200;
 const ROAD_M = 4500;
 const ROAD_X0 = 20;
 const ROAD_X1 = 340;
-const ROAD_Y = 124;
-const CAMERA_Y = 84;
+const ROAD_Y = 104;
+const CAMERA_Y = 64;
+const SCALE_Y = 154;
 const PX_PER_M = (ROAD_X1 - ROAD_X0) / ROAD_M;
 const KM_PX = 1000 * PX_PER_M;
 
@@ -131,13 +132,18 @@ function Road() {
         strokeLinecap="round"
       />
       <g stroke="var(--text-dim)" strokeWidth="1.2" opacity="0.8">
-        <line x1={ROAD_X0} y1="176" x2={ROAD_X0 + KM_PX} y2="176" />
-        <line x1={ROAD_X0} y1="172" x2={ROAD_X0} y2="180" />
-        <line x1={ROAD_X0 + KM_PX} y1="172" x2={ROAD_X0 + KM_PX} y2="180" />
+        <line x1={ROAD_X0} y1={SCALE_Y} x2={ROAD_X0 + KM_PX} y2={SCALE_Y} />
+        <line x1={ROAD_X0} y1={SCALE_Y - 4} x2={ROAD_X0} y2={SCALE_Y + 4} />
+        <line
+          x1={ROAD_X0 + KM_PX}
+          y1={SCALE_Y - 4}
+          x2={ROAD_X0 + KM_PX}
+          y2={SCALE_Y + 4}
+        />
       </g>
       <text
         x={ROAD_X0 + KM_PX + 8}
-        y="180"
+        y={SCALE_Y + 4}
         fontSize="10.5"
         fill="var(--text-dim)"
         className="font-mono"
@@ -234,7 +240,7 @@ function GraphPanel({ n, still }: { n: number; still: boolean }) {
               y2={from.y}
               stroke="var(--cyan)"
               strokeLinecap="round"
-              initial={still ? false : { pathLength: 0, opacity: 1 }}
+              initial={still ? false : { pathLength: 0, opacity: 1, strokeWidth: 1.9 }}
               animate={{
                 pathLength: 1,
                 opacity: isNew ? 1 : 0.32,
